@@ -81,7 +81,10 @@ only-include = ["cloudcoil"]
 # Unique name for the models
 # This will be used as the name for the setuptools entrypoints
 namespace = "cloudcoil.models.istio"
-input = "https://raw.githubusercontent.com/istio/istio/refs/tags/1.24.2/manifests/charts/base/files/crd-all.gen.yaml"
+# Split the crl urls by comma
+input = [
+    "https://raw.githubusercontent.com/istio/istio/refs/tags/1.24.2/manifests/charts/base/files/crd-all.gen.yaml",
+]
 crd-namespace = "io.istio"
 updates = [
     { match = "^(.*)\\..*Status$", jsonpath = "properties.validationMessages.items.properties.type.title", value = "\\g<1>.MessageType"},
