@@ -1,0 +1,17 @@
+[
+  "__init__.py",
+  "_lookup.py",
+  "extensions/__init__.py",
+  "extensions/v1alpha1.py",
+  "networking/__init__.py",
+  "networking/v1.py",
+  "networking/v1alpha3.py",
+  "networking/v1beta1.py",
+  "py.typed",
+  "security/__init__.py",
+  "security/v1.py",
+  "security/v1beta1.py",
+  "telemetry/__init__.py",
+  "telemetry/v1.py",
+  "telemetry/v1alpha1.py"
+]
