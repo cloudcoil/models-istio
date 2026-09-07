@@ -41,8 +41,8 @@ gateway = networking.v1.Gateway(
     metadata=apimachinery.ObjectMeta(name="main-gateway"),
     spec=networking.v1.GatewaySpec(
         selector={"istio": "ingressgateway"},
-        servers=[networking.v1.Server(
-            port=networking.v1.PortModel(
+        servers=[networking.v1.GatewaySpecServersItem(
+            port=networking.v1.GatewaySpecServersItemPort(
                 number=80,
                 name="http",
                 protocol="HTTP"
@@ -58,11 +58,11 @@ virtual_service = networking.v1.VirtualService(
     spec=networking.v1.VirtualServiceSpec(
         hosts=["website.example.com"],
         gateways=["main-gateway"],
-        http=[networking.v1.HttpModel(
-            route=[networking.v1.Route(
-                destination=networking.v1.Destination(
+        http=[networking.v1.VirtualServiceSpecHttpItem(
+            route=[networking.v1.VirtualServiceSpecHttpItemRouteItem(
+                destination=networking.v1.VirtualServiceSpecHttpItemRouteItemDestination(
                     host="website-svc",
-                    port=networking.v1.Port(number=8080)
+                    port=networking.v1.VirtualServiceSpecHttpItemRouteItemDestinationPort(number=8080)
                 )
             )]
         )]
@@ -166,8 +166,8 @@ with networking.v1.Gateway.new() as gateway:
         
         # Fluent style for complex structures
         spec.servers([
-            networking.v1.Server(
-                port=networking.v1.Port(
+            networking.v1.GatewaySpecServersItem(
+                port=networking.v1.GatewaySpecServersItemPort(
                     number=80,
                     name="http",
                     protocol="HTTP"
